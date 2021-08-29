@@ -18,7 +18,10 @@ class HTMLAnalyzer:
         return most_common_tags[0]
 
     def get_longest_path(self):
-        return None
+        html_tree = self.html_parser.get_html_tree()
+        paths = []
+        self._get_longest_path([html_tree], paths, [])
+        return sorted(paths, key=len, reverse=True)[0]
     
     def get_longest_path_with_max_most_common_tag_occurences(self):
         return None
@@ -58,3 +61,19 @@ class HTMLAnalyzer:
                     if key in self.html_parser.VALUE_TAGS:
                         count = count + 1
         return count
+
+    def _get_longest_path(self, html_tree, paths: list, current_path: list):
+        if type(html_tree) is list:
+            for element in html_tree:
+                if hasattr(element, 'keys'):
+                    keys = element.keys()
+                    for key in keys:
+                        if key not in self.html_parser.RESERVED_TAGS:
+                            new_path = current_path.copy()
+                            new_path.append(key)
+                            if new_path in paths:
+                                print('vuolia')
+                            paths.append(new_path)
+                            self._get_longest_path(element[key], paths, new_path)
+                        else:
+                            paths.append(current_path)
