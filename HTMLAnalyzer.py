@@ -22,8 +22,9 @@ class HTMLAnalyzer:
     def _get_unique_tags(self, html_tree, unique_tags: set):
         if type(html_tree) is list:
             for element in html_tree:
-                keys = element.keys()
-                for key in keys:
-                    if key != '_value':
-                        unique_tags.add(key)
-                        self._get_unique_tags(element[key], unique_tags)
+                if hasattr(element, 'keys'):
+                    keys = element.keys()
+                    for key in keys:
+                        if key not in self.html_parser.RESERVED_TAGS:
+                            unique_tags.add(key)
+                            self._get_unique_tags(element[key], unique_tags)

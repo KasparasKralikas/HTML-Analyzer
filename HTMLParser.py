@@ -5,6 +5,8 @@ class HTMLParser:
 
     _html_tree = None
 
+    RESERVED_TAGS = ['_value', '_values', '_attributes']
+
     def retrieve_html_tree_from_url(self, url):
         response = requests.get(url)
         self._html_tree = html_to_json.convert(response.text)
