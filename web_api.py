@@ -7,6 +7,7 @@ PORT = 5000
 
 app = Flask(__name__)
 
+
 @app.route('/analyze', methods=['GET'])
 def analyze_url():
     start_time = time.time()
@@ -25,6 +26,7 @@ def analyze_url():
         return jsonify(response)
     except:
         return 'Something went wrong on the server side', 500
+
 
 if __name__ == '__main__':
     html_parser = HTMLParser()

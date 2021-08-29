@@ -1,6 +1,7 @@
 import html_to_json
 import requests
 
+
 class HTMLParser:
 
     _html_tree = None
@@ -17,4 +18,3 @@ class HTMLParser:
 
     def get_html_tree(self):
         return self._html_tree
-
