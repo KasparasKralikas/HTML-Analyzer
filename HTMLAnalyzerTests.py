@@ -10,10 +10,8 @@ class HTMLAnalyzerTests(unittest.TestCase):
         html_parser.retrieve_html_tree_from_html_string(HTML_EXAMPLE_2)
         html_analyzer = HTMLAnalyzer(html_parser)
         unique_tags = html_analyzer.get_unique_tags()
-        expected_unique_tags = ['html', 'body', 'h1', 'p']
-        unique_tags.sort()
-        expected_unique_tags.sort()
-        self.assertListEqual(expected_unique_tags,  unique_tags)
+        expected_unique_tags = {'html', 'body', 'h1', 'p'}
+        self.assertSetEqual(expected_unique_tags,  unique_tags)
 
     def test_get_most_common_tag_from_valid_html(self):
         html_parser = HTMLParser()

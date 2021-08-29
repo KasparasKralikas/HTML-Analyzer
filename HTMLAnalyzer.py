@@ -8,7 +8,7 @@ class HTMLAnalyzer:
         html_tree = self.html_parser.get_html_tree()
         unique_tags = set()
         self._get_unique_tags([html_tree], unique_tags)
-        return list(unique_tags)
+        return unique_tags
 
     def get_most_common_tag(self):
         return None
