@@ -6,11 +6,8 @@ class HTMLAnalyzer:
     
     def get_unique_tags(self):
         html_tree = self.html_parser.get_html_tree()
-        root_keys = html_tree.keys()
         unique_tags = set()
-        for key in root_keys:
-            unique_tags.add(key)
-            self._get_unique_tags(html_tree[key], unique_tags)
+        self._get_unique_tags([html_tree], unique_tags)
         return list(unique_tags)
 
     def get_most_common_tag(self):
@@ -27,6 +24,6 @@ class HTMLAnalyzer:
             for element in html_tree:
                 keys = element.keys()
                 for key in keys:
-                    if key is not '_value':
+                    if key != '_value':
                         unique_tags.add(key)
                         self._get_unique_tags(element[key], unique_tags)
