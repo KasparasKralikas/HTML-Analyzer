@@ -11,6 +11,8 @@ class HTMLAnalyzerTests(unittest.TestCase):
         html_analyzer = HTMLAnalyzer(html_parser)
         unique_tags = html_analyzer.get_unique_tags()
         expected_unique_tags = ['html', 'body', 'h1', 'p']
+        unique_tags.sort()
+        expected_unique_tags.sort()
         self.assertListEqual(expected_unique_tags,  unique_tags)
 
     def test_get_most_common_tag_from_valid_html(self):
