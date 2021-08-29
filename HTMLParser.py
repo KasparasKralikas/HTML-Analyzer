@@ -6,6 +6,7 @@ class HTMLParser:
     _html_tree = None
 
     RESERVED_TAGS = ['_value', '_values', '_attributes']
+    VALUE_TAGS = ['_value', '_values']
 
     def retrieve_html_tree_from_url(self, url):
         response = requests.get(url)
